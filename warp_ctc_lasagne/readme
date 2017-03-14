@@ -1,0 +1,15 @@
+model.py contains your model
+decode.py contains decoder, just best path decoder
+make_batches.py contains function to on-line load data for efficient memory use
+clip_grad.py is to clip gradients of adam, sgd, rmsprop and adadelta and momentum
+utils.py contains how to store your model, load model and some safety log-function 
+
+noting that, i write a theano OP for warp-ctc. For using warp-ctc:
+it contains four inputs:
+data, data_len, label, label_len
+data: three dimensional data seq x batch x data_dim(usually output of lstm is batch x seq x data_dim, so you needs dimshufle)
+data_len, label, label_len are vector that contains length of data(seq), label and each label's legnth of each data
+length of data_len and label_len is equal to size of mini-batch(e.g batch from seq x batch x data_dim)
+
+if you train swbd, you don't need phones.60-48-39, just decode then output to txt file, then read txt file to remove repeated symbol between blank and remove blank, then you can calculate per
+examples contains toy model to show how to use warp-ctc
